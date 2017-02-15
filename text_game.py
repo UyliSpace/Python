@@ -1,300 +1,246 @@
 # -*- coding: utf-8 -*-
-# Star the game, game asking player about him
-a1, a2, a3, a4, a5, a6 = False, False, False, False, False, False
-i, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12 = False, False, False, False, False, False, False, False, False, False, False, False, False
+import time
 
-print ("Привіт, як твоє ім\'я?")
-while a1 == False:
-    user_name = input()
-    if user_name.isalpha() == False:
-        print ("Спробуй букви.")
-        print ("Ще раз...")
-        print ("Як твоє ім\'я?")
-    else:
-        a1 = True
+def validation_alpha():
+    switch_alpha = False
+    while switch_alpha == False:
+        user_name = input()
+        if user_name.isalpha() == False:
+            print("Спробуй літери.")
+            print("Ще раз...")
+        else:
+            switch_alpha = True
+    if user_name == 'так':
+        exit()
+    return 0
 
-print ("Скільки тобі років?")
-while a2 == False:
-    user_age = input()
-    if user_age.isdigit() == False:
-        print ("Спробуй цифри.")
-        print ("Ще раз...")
-        print ("Скільки тобі років?")
-    else:
-        a2 = True
+def validation_digit():
+    switch_digit = False
+    while switch_digit == False:
+        global user_age
+        user_age = input()
+        if user_age.isdigit() == False:
+            print("Спробуй цифри.")
+            print("Ще раз...")
+        else:
+            switch_digit = True
+    return 0
 
-print ("Який в тебе ріст(в сантиметрах, будь ласка)?")
-while a3 == False:
-    user_height = input()
-    if user_height.isdigit() == False:
-        print ("Спробуй цифри.")
-        print ("Ще раз...")
-        print ("Який в тебе ріст(в сантиметрах, будь ласка)?")
-    else:
-        a3 = True
+def validation_choice():
+    switch_digit = False
+    while switch_digit == False:
+        global user_choice
+        user_choice = input()
+        if user_choice.isdigit() == False:
+            print("Спробуй цифри.")
+            print("Ще раз...")
+        else:
+            switch_digit = True
+    if int(user_choice) == 0:
+        exit()
+    return 0
 
-print ("Яка в тебе вага(в кілограмах, будь ласка)?")
-while a4 == False:
-    user_weigh = input()
-    if user_weigh.isdigit() == False:
-        print ("Спробуй цифри.")
-        print ("Ще раз...")
-        print ("Яка в тебе вага(в кілограмах, будь ласка)?")
-    else:
-        a4 = True
+def age_limit():
+    if int(user_age) >= 36:
+        print("...")
+        time.sleep(1)
+        print("Фізична оболонка твого персонажа занадто потріпана і не витримає проходження моєї гри.")
+        print("Пропоную випити еліксир молодості і повернутися до моєї гри :)")
+        exit()
+    elif int(user_age) <= 9:
+        print("...")
+        time.sleep(1)
+        print("Нажаль, міра твого морального здоров\'я не досягнула потрібного рівня.")
+        exit()
+    return 0
 
-print ("Який в тебе колір очей?")
-while a5 == False:
-    user_eyes = input()
-    if user_eyes.isalpha() == False:
-        print ("Спробуй букви.")
-        print ("Ще раз...")
-        print ("Який в тебе колір очей?")
-    else:
-        a5 = True
+def quick_exit(user_data):
+    if int(user_data) == 0:
+        exit()
+    return 0
 
-print ("Який в тебе колір волосся?")
-while a6 == False:
-    user_hair = input()
-    if user_hair.isalpha() == False:
-        print ("Спробуй букви.")
-        print ("Ще раз...")
-        print ("Який в тебе колір волосся?")
-    else:
-        a6 = True
 
-# Start the game
-# "Вітаю, {0}, який(а) має {1} колір очей і {2} колір волося, {3} років, ріст {4}, вага {5}".format(user_name, user_eyes, user_hair, user_age, user_height, user_weigh)
+# Введення в гру
+print("========= Рада вітати тебе у грі випробування долі! =========")
+time.sleep(1)
 
-print ("\tВітаю!")
-print ("\tПочинаймо гру!")
-print ("""
-Пустеля. Ти вже 3 дні не їв. В тебе є ніж і трішки води, щоб добратися або до найближчого міста, або до оазиса.
-Тут ти бачиш скорпіона, який повзе в твою сторону.
-Твої дії?
-\t1. З\'їсти його. Виглядає апетитно.
-\t2. Вбити його, героїчно захищаючи своє життя.
-\t3. Просто пройти мимо. Він тобі нічого не зробив і ти не зробиш.
-""")
+print("Введи ім\'я свого персонажу(лише літери).....Вийти? так-> 0")
+validation_alpha()
+
+print("Скільки тобі років?.....Вийти? так-> 0")
+validation_digit()
+age_limit()
+
+# Початок гри
+print("--------- Починаймо гру! ---------")
+print("Пустеля. Ти вже 3 дні не їв. В тебе є ніж і трішки води, щоб добратися або до найближчого міста, або до оазиса.")
+print("Тут ти бачиш скорпіона, який повзе в твою сторону.")
+print("Твої дії?")
+print("\t1. З\'їсти його. Виглядає апетитно.")
+print("\t2. Вбити його, героїчно захищаючи своє життя.")
+print("\t3. Просто пройти мимо. Він тобі нічого не зробив і ти не зробиш.")
+print("\t0. Вийти з гри.")
+
 print ("Що ти вибираєш (цифра)?")
-while i == False:
-    user_c1 = input()
-    if user_c1.isdigit() == False:
-        print ("Спробуй цифру.")
-        print ("Ще раз...")
-        print ("Що ти вибираєш (цифра)?")
-    else:
-        i = True
-# user_c1 += int(user_c1)
-if user_c1 == '1':
-    print ("""В процесі він боляче жалить тебе, все ще хочеш його з\'їсти?
-    \t1. З\'їсти.
-    \t2. Викинути подалі.
-    """)
+validation_choice()
+quick_exit(user_choice)
+
+if int(user_choice) == 1:
+    print("В процесі він боляче жалить тебе, все ще хочеш його з\'їсти?")
+    print("\t1. З\'їсти.")
+    print("\t2. Викинути подалі.")
+    print("\t0. Вийти з гри.")
     print ("Що ти вибираєш (цифра)?")
-    while i1 == False:
-        user1_c2 = input()
-        if user1_c2.isdigit() == False:
-            print ("Спробуй цифру.")
-            print ("Ще раз...")
-        else:
-            i1 = True
-    if user1_c2 == '1':
-        print ("""Тебе починає охоплювати біль. Тепер все вирішить лише твоя сила волі.
-        Терпіти?
-        \t1. Терпіти.
-        \t2. Не хочу! Болить!
-        """)
+    validation_choice()
+    quick_exit(user_choice)
+
+    if int(user_choice) == 1:
+        print("Тебе починає охоплювати біль. Тепер все вирішить лише твоя сила волі.")
+        print("Терпіти?")
+        print("\t1. Терпіти.")
+        print("\t2. Не хочу! Болить!")
+        print("\t0. Вийти з гри.")
         print ("Що ти вибираєш (цифра)?")
-        while i2 == False:
-            user1_c3 = input()
-            if user1_c3.isdigit() == False:
-                print ("Спробуй цифру.")
-                print ("Ще раз...")
-            else:
-                i2 = True
-        if user1_c3 == '1':
-            print ("""Стає лише гірше і далі терпіти?
-            \t1. До самого кінця!
-            \t2. Не можу більше.
-            """)
+        validation_choice()
+        quick_exit(user_choice)
+
+        if int(user_choice) == 1:
+            print("Стає лише гірше і далі терпіти?")
+            print("\t1. До самого кінця!")
+            print("\t2. Не можу більше.")
+            print("\t0. Вийти з гри.")
             print ("Що ти вибираєш (цифра)?")
-            while i3 == False:
-                user1_c4 = input()
-                if user1_c4.isdigit() == False:
-                    print ("Спробуй цифру.")
-                    print ("Ще раз...")
-                else:
-                    i3 = True
-            if user1_c4 == '1':
-                print("""Ти молодець! Ти витримав! Тепер ти царь скорпіонів і це хороша новина, але...
-                це означає, що ти тепер босс цього рівня, тому ти мусиш залишатися тут і боротися з гравцями,
-                поки хто не замінить тебе (також з\'їсть скорпіона).
-                HAPPY END 50-50%
-                """)
-            elif user1_c4 == '2':
+            validation_choice()
+            quick_exit(user_choice)
+
+            if int(user_choice) == 1:
+                print("Ти молодець! Ти витримав! Тепер ти царь скорпіонів і це хороша новина, але...")
+                print("Це означає, що ти тепер босс цього рівня, тому ти мусиш залишатися тут і боротися з гравцями,")
+                print("поки хтось не замінить тебе (також з\'їсть скорпіона) або вб\'є.")
+                print("HAPPY END 50-50%")
+            elif int(user_choice) == 2:
                 print("Трішки не дотягнув. Шкода. Ти труп. --> BAD END")
-        elif user1_c3 == '2':
+        elif int(user_choice) == 2:
             print ("Ти не витримав. Ти труп. --> BAD END")
-    elif user1_c2 == '2':
+    elif int(user_choice) == 2:
         print ("Твій організм не зміг витримати отруту скорпіона. Ти труп. --> BAD END")
-elif user_c1 == '2':
-    print ("""Ти отримав рідкісну отруту скорпіона. Сонце припікає. Зупинитися під пальмою для відпочинку?
-    \t1. Йти далі.
-    \t2. Перепочити.
-    """)
+elif int(user_choice) == 2:
+    print ("Ти отримав рідкісну отруту скорпіона. Сонце припікає. Зупинитися під пальмою для відпочинку?")
+    print("\t1. Йти далі.")
+    print("\t2. Перепочити.")
+    print("\t0. Вийти з гри.")
     print ("Що ти вибираєш (цифра)?")
-    while i4 == False:
-        user2_c2 = input()
-        if user2_c2.isdigit() == False:
-            print ("Спробуй цифру.")
-            print ("Ще раз...")
-        else:
-            i4 = True
-    if user2_c2 == '1':
-        print ("""На останніх силах ти дійшов до оазиса. Напився води.
-        Набрав води в баклашку. Вилити туди отруту скорпіона?
-        \t1. Так.
-        \t2. Ні. Я що дурний.
-        """)
+    validation_choice()
+    quick_exit(user_choice)
+
+    if int(user_choice) == 1:
+        print ("На останніх силах ти дійшов до оазиса. Напився води.")
+        print("Набрав води в баклашку. Вилити туди отруту скорпіона?")
+        print("\t1. Так.")
+        print("\t2. Ні. Я що дурний.")
+        print("\t0. Вийти з гри.")
         print ("Що ти вибираєш (цифра)?")
-        while i5 == False:
-            user2_c3 = input()
-            if user2_c3.isdigit() == False:
-                print ("Спробуй цифру.")
-                print ("Ще раз...")
-            else:
-                i5 = True
-        if user2_c3 == '1':
-            print ("""І ти пішов далі. По дорозі зустрів чоловіка, який просив дати йому води.
-            Ти вже забув про отруту. Поділитися водою?
-            \t1. Так.
-            \t2. Ні.
-            """)
+        validation_choice()
+        quick_exit(user_choice)
+
+        if int(user_choice) == 1:
+            print ("І ти пішов далі. По дорозі зустрів чоловіка, який просив дати йому води.")
+            print("Ти вже забув про отруту. Поділитися водою?")
+            print("\t1. Так.")
+            print("\t2. Ні.")
+            print("\t0. Вийти з гри.")
             print ("Що ти вибираєш (цифра)?")
-            while i6 == False:
-                user2_c1_4 = input()
-                if user2_c1_4.isdigit() == False:
-                    print ("Спробуй цифру.")
-                    print ("Ще раз...")
-                else:
-                    i6 = True
-            if user2_c1_4 == '1':
-                print("""Чисто випадково ти переміг царя скорпіонів його ж отрутою. Оце так удача.
-                HAPPY END 100%
-                """)
-            elif user2_c14 == '2':
+            validation_choice()
+            quick_exit(user_choice)
+
+            if int(user_choice) == 1:
+                print("Чисто випадково ти переміг царя скорпіонів його ж отрутою. Оце так удача.")
+                print("HAPPY END 100%")
+            elif int(user_choice) == 2:
                 print("Він накинувся на тебе і... Ти труп. --> BAD END")
-        elif user2_c3 == '2':
-            print ("""І ти пішов далі. По дорозі зустрів чоловіка, який просив дати йому води.
-            Поділитися водою?
-            \t1. Так.
-            \t2. Ні.
-            """)
+        elif int(user_choice) == 2:
+            print ("І ти пішов далі. По дорозі зустрів чоловіка, який просив дати йому води.")
+            print("Поділитися водою?")
+            print("\t1. Так.")
+            print("\t2. Ні.")
+            print("\t0. Вийти з гри.")
             print ("Що ти вибираєш (цифра)?")
-            while i7 == False:
-                user2_c2_4 = input()
-                if user2_c2_4.isdigit() == False:
-                    print ("Спробуй цифру.")
-                    print ("Ще раз...")
-                else:
-                    i7 = True
-            if user2_c2_4 == '1':
+            validation_choice()
+            quick_exit(user_choice)
+
+            if int(user_choice) == 1:
                 print ("Він накинувся на тебе і... Ти труп. --> BAD END")
-            elif user2_c2_4 == '2':
+            elif int(user_choice) == 2:
                 print ("Він накинувся на тебе і... Ти труп. --> BAD END")
-    elif user2_c2 == '2':
-        print ("""Так приємно побути в тіні. Ти і не помітив як заснув.
-        Поки ти спав тебе наздогнали родичі вбитого скорпіона і зажалили тебе.
-        Ти труп. --> BAD END
-        """)
-elif user_c1 == '3':
-    print ("""Твій вибір зберіг тобі трішки більше сил, яких вистачило, щоб добратися до найближчого міста.
-    Ти дуже голодний. Куди підеш?
-    \t1. В трактир.
-    \t2. В пекарню.
-    """)
+    elif int(user_choice) == 2:
+        print ("Так приємно побути в тіні. Ти і не помітив як заснув.")
+        print("Поки ти спав тебе наздогнали родичі вбитого скорпіона і зажалили тебе.")
+        print("Ти труп. --> BAD END")
+elif int(user_choice) == 3:
+    print ("Твій вибір зберіг тобі трішки більше сил, яких вистачило, щоб добратися до найближчого міста.")
+    print("Ти дуже голодний. Куди підеш?")
+    print("\t1. В трактир.")
+    print("\t2. В пекарню.")
+    print("\t0. Вийти з гри.")
     print ("Що ти вибираєш (цифра)?")
-    while i8 == False:
-        user3_c2 = input()
-        if user3_c2.isdigit() == False:
-            print ("Спробуй цифру.")
-            print ("Ще раз...")
-        else:
-            i8 = True
-    if user3_c2 == '1':
-        print ("""Ти напився і наївся. Сидиш задоволений і тут до тебе підходять якісь чоловіки.
-        Заговорити першим?
-        \t1. Так.
-        \t2. Ні.
-        """)
+    validation_choice()
+    quick_exit(user_choice)
+
+    if int(user_choice) == 1:
+        print ("Ти напився і наївся. Сидиш задоволений і тут до тебе підходять якісь чоловіки.")
+        print("Заговорити першим?")
+        print("\t1. Так.")
+        print("\t2. Ні.")
+        print("\t0. Вийти з гри.")
         print ("Що ти вибираєш (цифра)?")
-        while i9 == False:
-            user3_c1_3 = input()
-            if user3_c1_3.isdigit() == False:
-                print ("Спробуй цифру.")
-                print ("Ще раз...")
-            else:
-                i9 = True
-        if user3_c1_3 == '1':
-            print ("""В тебе хороший настрій, тому ти занадто самовпевнено і нагло (на думку тих чоловіків) з ними заговорив.
-            Ви побилися, тебе підстрелив хтось з них. Ти труп. --> BAD END
-            """)
-        elif user3_c1_3 == '2':
-            print ("""Вони заговорили до тебе, почали задирати, хотіли пограбувати. Раптово в трактир зашла поліція. Ти вже встиг зрадіти...
-            як раптом один з них неочікувано вистрелив в тебе. Ти був подібний на бандита, якого вони вже довго розшукували.
-            Неповезло тобі. Ти труп. --> BAD END
-            """)
-    elif user3_c2 == '2':
-        print ("""Тут якраз напекли свіжий хліб, булочки, багети. Ти смачно поїв. Хочеш розплатитися. Яку офіціантку покличеш?
-        \t1. Брюнетку.
-        \t2. Блондинку.
-        """)
+        validation_choice()
+        quick_exit(user_choice)
+
+        if int(user_choice) == 1:
+            print ("В тебе хороший настрій, тому ти занадто самовпевнено і нагло (на думку тих чоловіків) з ними заговорив.")
+            print("Ви побилися, тебе підстрелив хтось з них. Ти труп. --> BAD END")
+        elif int(user_choice) == 2:
+            print ("Вони заговорили до тебе, почали задирати, хотіли пограбувати. Раптово в трактир зашла поліція.")
+            print("Ти вже встиг зрадіти...")
+            print("як раптом один з них неочікувано вистрелив в тебе. Ти був подібний на бандита, якого вони вже довго")
+            print("розшукували. Неповезло тобі.")
+            print("Ти труп. --> BAD END")
+    elif int(user_choice) == 2:
+        print ("Тут якраз напекли свіжий хліб, булочки, багети. Ти смачно поїв. Хочеш розплатитися. Яку офіціантку покличеш?")
+        print("\t1. Брюнетку.")
+        print("\t2. Блондинку.")
+        print("\t0. Вийти з гри.")
         print ("Що ти вибираєш (цифра)?")
-        while i10 == False:
-            user3_c2_3 = input()
-            if user3_c2_3.isdigit() == False:
-                print ("Спробуй цифру.")
-                print ("Ще раз...")
-            else:
-                i10 = True
-        if user3_c2_3 == '1':
-            print ("""Дівчина виявилася дуже приємною і милою. Запрпонуєш їй зустрітися ввечері?
-            \t1. Так.
-            \t2. Ні.
-            """)
+        validation_choice()
+        quick_exit(user_choice)
+
+        if int(user_choice) == 1:
+            print ("Дівчина виявилася дуже приємною і милою. Запрпонуєш їй зустрітися ввечері?")
+            print("\t1. Так.")
+            print("\t2. Ні.")
+            print("\t0. Вийти з гри.")
             print ("Що ти вибираєш (цифра)?")
-            while i11 == False:
-                user3_c1_4 = input()
-                if user3_c1_4.isdigit() == False:
-                    print ("Спробуй цифру.")
-                    print ("Ще раз...")
-                else:
-                    i11 = True
-            if user3_c1_4 == '1':
-                print ("""Вона погодилася. Ви чудово провели час. Ти знайшов своє щастя.
-                HAPPY END 100%
-                """)
-            elif user3_c1_4 == '2':
+            validation_choice()
+            quick_exit(user_choice)
+
+            if int(user_choice) == 1:
+                print ("Вона погодилася. Ви чудово провели час. Ти знайшов своє щастя.")
+                print("HAPPY END 100%")
+            elif int(user_choice) == 2:
                 print ("Ти шкодував про це і потім хтось тебе підстрелив. Ти моральний труп і просто труп. --> BAD END")
-        elif user3_c2_3 == '2':
-            print ("""Дівчина виявилася грубою та непривітливою. Чи залишиш ти їй на чай?
-            \t1. Так
-            \t2. Ні
-            """)
+        elif int(user_choice) == 2:
+            print ("Дівчина виявилася грубою та непривітливою. Чи залишиш ти їй на чай?")
+            print("\t1. Так")
+            print("\t2. Ні")
+            print("\t0. Вийти з гри.")
             print ("Що ти вибираєш (цифра)?")
-            while i12 == False:
-                user3_c2_4 = input()
-                if user3_c2_4.isdigit() == False:
-                    print ("Спробуй цифру.")
-                    print ("Ще раз...")
-                else:
-                    i12 = True
-            if user3_c2_4 == '1':
-                print ("""Ти був настільки задоволений обідом, що залишив їй на чай. Вийшов з пекарні і радісно крокуючи впав в колодязь.
-                Ти труп. --> BAD END
-                """)
-            elif user3_c2_4 == '2':
-                print ("""Блондинка сильно розізлилася на тебе. Вона була відьмою, тому вона наклала на тебе прокляття
-                і ти неочікувано вмер він сердечного приступу. Ти труп. --> BAD END
-                """)
+            validation_choice()
+            quick_exit(user_choice)
+
+            if int(user_choice) == 1:
+                print ("Ти був настільки задоволений обідом, що залишив їй на чай.")
+                print("Вийшов з пекарні і радісно крокуючи впав в колодязь.")
+                print("Ти труп. --> BAD END")
+            elif int(user_choice) == 2:
+                print ("Блондинка сильно розізлилася на тебе. Вона була відьмою, тому вона наклала на тебе прокляття")
+                print("і ти неочікувано вмер він сердечного приступу. Ти труп. --> BAD END")
