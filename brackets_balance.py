@@ -2,7 +2,6 @@
 
 line = '(((((((((({[2, 3]}))))))))))'
 
-
 def brackets_balance(text):
 	pairs = {'(': ')', '{': '}', '[': ']'}
 	counter = 0
