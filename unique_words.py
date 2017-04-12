@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def unique_words():
-	file = open('Hroniki_Narnij_1.txt', encoding='utf-8')
+	file = open('Machine_learning.txt', encoding='utf-8')
 	text = file.read()
 	words = []
 	raw_text = set(text.split())
